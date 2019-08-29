@@ -14,31 +14,122 @@
     <main>
         <div class="slideshow-container">
             <div class="mySlides fade">
-                <img src="sky.jpg">
+                <img src="skyline.jpg">
             </div>
 
             <div class="mySlides fade">
-                <img src="">
+                <img src="water.jpg">
             </div>
 
             <div class="mySlides fade">
-                <img src="">
+                <img src="river.jpg">
             </div>
-
-            <!-- Next/Prev buttons -->
-            <a class="prev">&#10094;</a>
-            <a class="next">&#10095;</a>
 
             <!-- The dots/circles -->
-            <div style="text-align:center">
-                <span class="dot"></span> 
-                <span class="dot"></span> 
-                <span class="dot"></span> 
+            <div class="sliderControls" style="height: 0px;">
+                <span class="dot" onclick="showSlide(0)"></span> 
+                <span class="dot" onclick="showSlide(1)"></span> 
+                <span class="dot" onclick="showSlide(2)"></span> 
             </div>
+
+            <!-- Next/Play/Prev buttons -->
+            <div class="sliderControls">
+                <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+                <a id="pause" onclick="toggle()">&#10074;&#10074;</a>
+                <a class="next" onclick="changeSlide(1)">&#10095;</a>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="colour-container">
+            <h2>Why I'm Applying to Founders & Coders</h2>
+            <div>
+                <!-- Link to CS50 Final Project, using dropdown arrow & paragraph -->
+            </div>
+        </div>
+
+        <hr>
+
+        <div>
+            <h2>What I Gained From the Prerequisites</h2>
+        </div>
+
+        <hr>
+
+        <div>
+            <!-- flexbox with 3 links to prereqs using each icon (git, fcc, codewars) -->
         </div>
     </main>
 </body>
 <script>
+    let timer = null;
+    let slideIndex = -1;
+    toggle();
 
+    // listen for keyboard presses
+    document.addEventListener('keyup', function (event) {
+        let key = event.key;
+        console.log(event.key, event.keyCode);
+
+        if (key === "ArrowLeft") {
+            changeSlide(-1);
+        }
+        if (key === "ArrowRight") {
+            changeSlide(1);
+        }
+        if (key == " ") {
+            toggle();
+        }
+    });
+
+    // toggle play/pause slides
+    function toggle() {
+        console.log(timer);
+        // if slideshow is toggled off
+        if (timer) {
+            clearInterval(timer);
+            timer = null;
+            document.getElementById("pause").innerHTML = "&#9658;";
+            console.log("pause", timer)
+        }
+        // when toggled on, change slide every 2 seconds
+        else {
+            timer = setInterval(function() { changeSlide(1); }, 4000);
+            document.getElementById("pause").innerHTML = "&#10074;&#10074;";
+            console.log("play");
+        }
+    }
+
+    // increment/decrement slide
+    function changeSlide(n) {
+        showSlide(slideIndex + n);
+    }
+
+    // handles css changes to show an image
+    function showSlide(n) {
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        slideIndex = n;
+
+        // if n < 0, go back to 2
+        if (n < 0) {slideIndex = 2}
+
+        // if n > 2, go back to 0
+        if (n > 2) {slideIndex = 0}
+
+        // loop through the slides, 
+        for (i = 0; i < slides.length; i++) {
+            // setting all display properties to none
+            slides[i].style.display = "none";
+            
+            // also removing active class from dot elements
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+
+        // Set display of current slide to "block" & set active dot
+        slides[slideIndex].style.display = "block";
+        dots[slideIndex].className += " active";
+    }
 </script>
 </html>
