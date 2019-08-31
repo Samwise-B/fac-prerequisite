@@ -257,7 +257,6 @@
         
         for (let i = 0; i < message.length; i++) {
             let char = message[i];
-            console.log(char, i);
             if (char.length === 1 && char.match(/[a-z]/i)) {
             char = alphabet.indexOf(char.toLowerCase()) + 13;
             if (char > 25) {
