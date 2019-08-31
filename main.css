@@ -3,7 +3,8 @@
 header {
   background-image: url("dark-floral.png");
   background-repeat: repeat;
-  padding: 5px;
+  padding-bottom: 5px;
+  max-height: 45px;
 }
 
 body, html {
@@ -26,9 +27,7 @@ h1 {
   font-family: "Georgia";
   color: white;
   text-align: center;
-  padding: 10px;
   margin: 0px;
-  height: 50px;
 }
 
 h2 {
