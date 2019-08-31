@@ -1,5 +1,11 @@
 * {box-sizing:border-box}
 
+header {
+  background-image: url("dark-floral.png");
+  background-repeat: repeat;
+  padding: 5px;
+}
+
 body, html {
   background-color: hsl(0, 0%, 7%);
   width: 100%;
@@ -17,12 +23,11 @@ p {
 }
 
 h1 {
-  font-family: "Arial";
+  font-family: "Georgia";
   color: white;
   text-align: center;
-  background-color: darkslategray;
   padding: 10px;
-  margin: -8px -8px 0px -8px;
+  margin: 0px;
   height: 50px;
 }
 
@@ -95,7 +100,7 @@ textarea {
 
 /* Slideshow Images */
 .image {
-  border: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 /* Big Container */
@@ -119,7 +124,8 @@ textarea {
   border-width: 0 6px 6px 0;
   display: inline-block;
   padding: 12px;
-  margin: 5px;
+  margin-left: 0px;
+  margin-bottom: 8px;
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
 }
@@ -128,8 +134,8 @@ textarea {
   border: solid white;
   border-width: 4px 4px 4px 4px;
   display: inline-block;
-  padding: 0px 12px;
-  margin-bottom: 10px;
+  padding: 0px 14px;
+  margin-bottom: 14px;
 }
 
 .logo {
@@ -139,8 +145,8 @@ textarea {
 }
 
 .dropdown {
-  width: 66px;
-  height: 69px;
+  width: 60px;
+  height: 60px;
   background-color:  hsl(0, 0%, 7%);
   border: 2px solid white;
   border-radius: 50%;
@@ -244,7 +250,7 @@ textarea {
     height: 15px;
     width: 15px;
     margin: 0 4px;
-    background-color: #bbb;
+    background-color: hsl(0, 0%, 12%);
     border-radius: 50%;
     position: relative;
     bottom: 40px;
@@ -252,7 +258,7 @@ textarea {
   }
 
 .active, .dot:hover {
-    background-color: #717171;
+    background-color: hsl(0, 0%, 25%);
   }
 
  /* Fading animation */
