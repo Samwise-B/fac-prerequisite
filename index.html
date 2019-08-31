@@ -15,15 +15,15 @@
         <div class="slideshow-container">
             <!-- Slides -->
             <div class="mySlides fade">
-                <img src="skyline.jpg">
+                <img class="image" src="skyline.jpg">
             </div>
 
             <div class="mySlides fade">
-                <img src="water.jpg">
+                <img class="image" src="water.jpg">
             </div> 
 
             <div class="mySlides fade">
-                <img src="river.jpg">
+                <img class="image" src="river.jpg">
             </div>
 
             <!-- The dots/circles -->
@@ -45,17 +45,84 @@
 
         <h2>Why I'm Applying to Founders & Coders</h2>
         <div class="big-container">
-            <p>Test</p>
-            <div>
-                <!-- Link to CS50 Final Project, using dropdown arrow & paragraph -->
+            <div style="text-align: center;">
+                <button class="collapsible dropdown">&#11167;</button>
+                <div class="hidden">
+                    <p>
+                        I studied computer science in school at GCSE and A-Level. 
+                        During that time, I would mostly code in Python. 
+                        I also studied HTML, CSS and JavaScript a bit, but I didn’t 
+                        build a website. The curriculum wasn’t just programming. 
+                        I studied computer theory, which included learning the basics of 
+                        how a computer works (CPU, RAM, GPU, HDD, SSD), as well as learning 
+                        about software and networking. Throughout A levels I became more 
+                        interested in computer science. When A levels finished I decided 
+                        not to go to university straight away. Instead, I started looking 
+                        at online programming courses.
+                    </p>
+                    <p>
+                            In february this year, I started CS50x which helped to 
+                            connect the dots between the theory I had learnt in school 
+                            and my programming knowledge by coding in C. By the end of 
+                            the course, I built my own web app using the Python framework 
+                            Flask. I used bootstrap for the responsive design, which was 
+                            my first time making my own web app. You can find my final 
+                            project here. 
+                    </p>
+                    <p>
+                        I finished CS50 at the end of June and it left me enthusiastic 
+                        to work on bigger projects. I came back from a holiday at the 
+                        end of July and I looked into FAC.
+                    </p>
+                    <p>
+                        After checking out the website, as well as coming to a meetup I got 
+                        the impression that FAC would be a great way to further my understanding 
+                        of how more complicated web applications work in an environment where 
+                        I can get hands on experience developing projects in a group. Doing online 
+                        courses was a positive experience, but getting input from peers would help 
+                        my work rate and group work seems to be a crucial ability that employers 
+                        look for. FAC seems like a community of eager, developers coming together 
+                        to learn how to solve real problems. The tech for better programme also 
+                        seems like a smart way to try and make a positive impact on the world.
+                    </p>
+                    <div>
+                        <!-- Link to CS50 Final Project -->
+                    </div>
+                </div>
             </div>
         </div>
 
         <hr>
 
         <h2>What I Gained From the Prerequisites</h2>
-        <div class="flex-container">
-            
+        <div class="big-container">
+            <p>
+                example text!
+            </p>
+        </div>
+        <div class="flex">
+            <div class="input-container">
+                <h4>ROT13</h4>
+                <h3>Encrypts/decrypts strings using Rot13 (e.g. 'Uryyb Jbeyq!')</h3>
+                <textarea id="msg" class="textbox" placeholder="plaintext"></textarea>
+                <button onclick="rot13()">Encrypt</button>
+                <button id="clearRot" onclick="">
+                    Reset
+                </button>
+                <h3>Cyphertext:</h3>
+                <div id="cypher" class="textbox"></div>
+            </div>
+            <div class="input-container">
+                <h4>MORSE DECODER</h4>
+                <h3>Input morse code using '.' and '-' (e.g. '..-. .- -.-.')</h3>
+                <textarea id="morse" class="textbox" placeholder="morse code (e.g. '..   .- -- ... .- --')"></textarea>
+                <button onclick="decodeMorse()">Decode</button>
+                <button id="clearMorse" onclick="">
+                    Reset
+                </button>
+                <h3>Plaintext: </h3>
+                <div id="morseOut" class="textbox"></div>
+            </div>
         </div>
 
         <hr>
@@ -64,21 +131,21 @@
         <div class="flex">
             <!-- flexbox with 3 links to prereqs using each icon (git, fcc, codewars) -->
             <a href="https://github.com/Samwise-B/fac-prerequisite">
-                <div class="container">
+                <div class="link-container">
                     <h4 style="font-family: 'Apex Sans';">GitHub</h4>
                     <img src="github-logo.png" class="logo">
                 </div>
             </a>
 
             <a href="https://www.freecodecamp.org/fcc6539de0d-8065-4242-99cf-95784129d6bd">
-                <div class="container">
+                <div class="link-container">
                     <h4>freeCodeCamp</h4>
                     <img src="freeCodeCamp-glyph.png" class="logo">
                 </div>
             </a>
 
             <a href="https://www.codewars.com/users/Samwise-B/stats">
-                <div class="container">
+                <div class="link-container">
                     <h4>CodeWars</h4>
                         <img src="codewars.svg" class="logo">
                 </div>
@@ -90,6 +157,25 @@
     let timer = null;
     let slideIndex = -1;
     toggle();
+
+    // add listeners for dropdown collapsibles
+    let coll = document.getElementsByClassName("collapsible");
+
+    for (let i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            // toggles active class for the respective collapsible that is pressed
+            //this.classList.toggle("active");
+            // returns the next element (hidden) following the specified one (this)
+            let content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+                this.innerHTML = '⮟';
+            } else {
+                content.style.display = "block";
+                this.innerHTML = '&#8722;';
+            }
+        });
+    }
 
     // listen for keyboard presses, handle events accordingly
     document.addEventListener('keyup', function (event) {
@@ -155,5 +241,60 @@
         slides[slideIndex].style.display = "block";
         dots[slideIndex].className += " active";
     }
+
+    // bonus stuff
+    function rot13(){
+        let alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+        let cyphertext = "";
+        let message = document.getElementById("msg").value;
+        console.log(message);
+        
+        for (let i = 0; i < message.length; i++) {
+            let char = message[i];
+            console.log(char, i);
+            if (char.length === 1 && char.match(/[a-z]/i)) {
+            char = alphabet.indexOf(char.toLowerCase()) + 13;
+            if (char > 25) {
+                char -= 26;
+            }
+            if (message[i].match(/[A-Z]/)) {
+                cyphertext += alphabet[char].toUpperCase();
+            }
+            else {
+                cyphertext += alphabet[char];
+            }
+            }
+            else {
+            cyphertext += char
+            }
+        }
+        console.log(cyphertext);
+        document.getElementById("cypher").innerHTML = cyphertext;
+    }
+    function decodeMorse() {
+        let morseCode = document.getElementById('morse').value;
+        let arr = morseCode.trim().replace(/\s\s/g, " ").split(" ");
+        const MORSE_CODE = {
+            '.-': 'A', '-...': 'B', '-.-.': 'C', '-..': 'D', '.': 'E',
+            '..-.': 'F', '--.': 'G', '....': 'H', '..': 'I', '.---': 'J',
+            '-.-': 'K', '.-..': 'L', '--': 'M', '-.': 'N', '---': 'O', 
+            '.--.': 'P', '--.-': 'Q', '.-.': 'R', '...': 'S', '-': 'T',
+            '..-': 'U', '...-': 'V', '.--': 'W', '-..-': 'X', '-.--': 'Y',
+            '--..': 'Z', '-----': '0', '.----': '1', '..---': '2', '...--': '3',
+            '....-': '4', '.....': '5', '-....': '6', '--...': '7', '---..': '8',
+            '----.': '9', '--..--': ',', '.-.-.-': '.', '..--..': '?', '-.-.-.': ';',
+            '---...': ':', '-..-.': '/', '.---.': "'", '.-..-.': '"', '..--.-': '_',
+            '-.--.': '(', '-.--.-': ')'
+
+        }
+        arr = arr.map((c) => (c.length > 0) ? MORSE_CODE[c]: " ");
+        document.getElementById("morseOut").innerHTML = arr.join("");
+    }
+    document.getElementById("clearRot").addEventListener("click", function (event) {
+        document.getElementById("plaintext").innerHTML = "";
+    });
+    document.getElementById("clearMorse").addEventListener("click", function (event) {
+        document.getElementById("morseOut").innerHTML = "";
+    });
 </script>
 </html>
