@@ -46,7 +46,7 @@
         <h2>Why I'm Applying to Founders & Coders</h2>
         <div class="big-container">
             <div style="text-align: center;">
-                <button class="collapsible dropdown">&#11167;</button>
+                <button class="collapsible dropdown"><i id="symbol" class="arrow"></i></button>
                 <div class="hidden">
                     <p>
                         I studied computer science in school at GCSE and A-Level. 
@@ -85,9 +85,7 @@
                         to learn how to solve real problems. The tech for better programme also 
                         seems like a smart way to try and make a positive impact on the world.
                     </p>
-                    <div>
-                        <!-- Link to CS50 Final Project -->
-                    </div>
+                    <!-- Link to CS50 Final Project -->
                 </div>
             </div>
         </div>
@@ -167,12 +165,15 @@
             //this.classList.toggle("active");
             // returns the next element (hidden) following the specified one (this)
             let content = this.nextElementSibling;
+            let symbol = document.getElementById("symbol")
             if (content.style.display === "block") {
                 content.style.display = "none";
-                this.innerHTML = '⮟';
+                symbol.classList.toggle("bar");
+                symbol.classList.toggle("arrow");
             } else {
                 content.style.display = "block";
-                this.innerHTML = '&#8722;';
+                symbol.classList.toggle("arrow");
+                symbol.classList.toggle("bar");
             }
         });
     }
