@@ -111,7 +111,7 @@
         </div>
         <div class="flex">
             <div class="input-container">
-                <h4>ROT13</h4>
+                <h4 class="input-title">ROT13</h4>
                 <h3>Encrypts/decrypts strings using Rot13 (e.g. 'Uryyb Jbeyq!')</h3>
                 <textarea id="msg" class="textbox" placeholder="plaintext"></textarea>
                 <button onclick="rot13()">Encrypt</button>
@@ -122,7 +122,7 @@
                 <div id="cypher" class="textbox"></div>
             </div>
             <div class="input-container">
-                <h4>MORSE DECODER</h4>
+                <h4 class="input-title">MORSE DECODER</h4>
                 <h3>Input morse code using fullstops & hyphen (e.g. '..-. .- -.-.')</h3>
                 <textarea id="morse" class="textbox" placeholder="morse code (e.g. '..   .- -- ... .- --')"></textarea>
                 <button onclick="decodeMorse()">Decode</button>
@@ -141,7 +141,7 @@
             <!-- flexbox with 3 links to prereqs using each icon (git, fcc, codewars) -->
             <a href="https://github.com/Samwise-B/fac-prerequisite">
                 <div class="link-container">
-                    <h4 style="font-family: 'Apex Sans';">GitHub</h4>
+                    <h4>GitHub</h4>
                     <img src="github-logo.png" class="logo">
                 </div>
             </a>
@@ -172,10 +172,9 @@
 
     for (let i = 0; i < coll.length; i++) {
         coll[i].addEventListener("click", function() {
-            // toggles active class for the respective collapsible that is pressed
-            //this.classList.toggle("active");
             // returns the next element (hidden) following the specified one (this)
             let content = this.nextElementSibling;
+            // toggles active class for the respective collapsible that is pressed
             let symbol = document.getElementById("symbol")
             if (content.style.display === "block") {
                 content.style.display = "none";
@@ -192,7 +191,6 @@
     // listen for keyboard presses, handle events accordingly
     document.addEventListener('keyup', function (event) {
         let key = event.key;
-        console.log(event.key, event.keyCode);
 
         if (key === "ArrowLeft") {
             changeSlide(-1);
@@ -200,26 +198,23 @@
         if (key === "ArrowRight") {
             changeSlide(1);
         }
-        if (key == " ") {
+        if (key == "k") {
             toggle();
         }
     });
 
     // toggle play/pause slides
     function toggle() {
-        console.log(timer);
         // if slideshow is toggled off
         if (timer) {
             clearInterval(timer);
             timer = null;
             document.getElementById("pause").innerHTML = "&#9658;";
-            console.log("pause", timer)
         }
         // when toggled on, change slide every 2 seconds
         else {
             timer = setInterval(function() { changeSlide(1); }, 4000);
             document.getElementById("pause").innerHTML = "&#10074;&#10074;";
-            console.log("play");
         }
     }
 
@@ -259,7 +254,6 @@
         let alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
         let cyphertext = "";
         let message = document.getElementById("msg").value;
-        console.log(message);
         
         for (let i = 0; i < message.length; i++) {
             let char = message[i];
@@ -280,7 +274,6 @@
             cyphertext += char
             }
         }
-        console.log(cyphertext);
         document.getElementById("cypher").innerHTML = cyphertext;
     }
     function decodeMorse() {
